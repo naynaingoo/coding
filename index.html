@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Coding DAO</title>
+  </head>
+  <style>
+      html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #222;
+  font: 16px Courier;
+  box-shadow: 0px 1px 5px red inset,0px 1px 0px rgba(255,255,255,0.5);	
+}
+
+i {
+  font-style: normal;
+  color: red;
+}
+e {
+  color: #0e0;
+}
+b {
+  color: #08f;
+  font-weight: normal;
+}
+
+#cmd {
+  width: calc(100% - 20px);
+  height: calc(100% - 60px);
+  margin: 0;
+  padding: 10px;
+  color: #eee;
+}
+#cmdbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  width: calc(100% - 20px);
+  height: 40px;
+  background: #323232;
+  border-top: 1px solid #444;
+}
+#command {
+  width: calc(100% - 10px);
+  height: 36px;
+  border: 1px solid #444;
+  background: #222;
+  color: #0e0;
+  outline: none;
+  padding-left: 8px;
+  font-family: courier;
+}
+
+@-webkit-keyframes loader {
+  from {width: 0}
+  to {width: 100%}
+}
+@keyframes loader {
+  from {width: 0}
+  to {width: 100%}
+}
+
+#inp-ggame {
+  width: 190px;
+  height: 24px;
+  background: #333;
+  border: 1px solid #444;
+  display: block;
+  outline: none;
+  color: #0e0;
+  padding-left: 10px;
+}
+#btn-ggame {
+  margin: 10px 50px;
+  width: 100px;
+  height: 24px;
+  background: #444;
+  border: 1px solid #0e0;
+  display: block;
+}
+#btn-ggame:before {
+  content: 'Guess';
+  color: #0e0;
+}
+
+  </style>
+  <body>
+    <div id="cmd">enter <e>"help"</e> to see all commands<br><br>
+    this terminal is fully interactive and also dynamic for some commands<br><br>
+    </div>
+    <div id="cmdbar">
+      <input type="text" id="command" placeholder="enter command here...">
+    </div>
+  </body>
+  
+  
+  <script>
+  
+// Made with NeoIonJS
+// A simple framework made by me
+// to make my work easier
+onload = function() {
+  neo = document.querySelector('script[type=neo-ion]');
+  eval(NEO(neo.innerHTML));
+}
+function NEO(data) {
+  data = data.replace(/func=>/gm, 'function ');
+  data = data.replace(/_\$html/gm, '.innerHTML');
+  data = data.replace(/_\$val/gm, '.value');
+  data = data.replace(/_\$evt/gm, '.addEventListener');
+  data = data.replace(/_\$/gm, '.style.');
+  data = data.replace(/elif/gm, 'else if');
+  data = data.replace(/;;/gm, '//');
+  data = data.replace(/@begin/gm, '/*');
+  data = data.replace(/@end/gm, '*/');
+  
+  return data;
+}
+function $(e) {
+  return document.querySelector(e);
+}
+
+// EOF NeoIonJS
+//
+//
+// Dont Delete This Tag otherwise this
+// function will dont work
+// </script><script type='neo-ion'>
+
+@begin
+  Hacker Terminal [SoloLearn Contest]
+        By Amethyst Animion
+@end
+
+style = document.createElement('style');
+document.head.appendChild(style);
+
+
+;; Add Event Listener To Run The Typing Function
+$('#command')_$evt('keyup', run, false);
+
+;; For Typing Function
+func=>run() {
+  if(event.keyCode == 13) {
+    a = $('#command')_$val.toLowerCase();
+    $('#command')_$val = "";
+
+    ;; If Command Is List
+    if (a == 'help' || a == 'a*help') {
+      $('#cmd')_$html = 'enter one command below:<br>'+
+      '<e>"about"</e> to see all commands<br>'+
+      '<e>"team"</e> to connect to a server<br>'+
+      '<e>"roadmap"</e> to show matrix display<br>'+
+      '<e>"sneakpeeks"</e> to see code info<br>'+
+    
+      '<e>"link"</e> to get browser info';
+    }
+    ;; If Command Is Creator
+    elif (a == 'about' || a == 'a*maker') {
+      $('#cmd')_$html = '<b>About</b><br>'+
+      'Created by: <e>SolRoot#4224</e><br>'+
+      'Created on: <e>26 July 2022</e><br>'+
+      'Technology: <e>HTML, CSS, JS</e><br>'+
+      'Frameworks: <e>NeoIonJS</e>';
+    }
+    ;; If Command Is Info
+    elif (a == 'team' || a == 'a*i') {
+      $('#cmd')_$html = '<e>SolRoot</e> - Professional in NFT space, been in a field for 6+  months. One of the founders of <e>Coding Dao. </e> ';
+    }
+    ;; If Command Is Creator
+    elif (a == 'roadmap' || a == 'a*maker') {
+      $('#cmd')_$html = '<b>TBA....</b><br>';
+    }
+    ;; If Command Is Creator
+    elif (a == 'sneakpeeks' || a == 'a*maker') {
+      $('#cmd')_$html = '<b>TBA....</b><br>';
+    }
+    ;; If Command Is Creator
+    elif (a == 'link' || a == 'a*maker') {
+      $('#cmd')_$html = '<e>Twitter</e> : Soon </br> <e>Discord</e> : Private';
+    }
+    
+    
+    ;; If Command Is Connect
+    elif (a == 'connect' || a == 'a*con') {
+      ip1 = Math.ceil(Math.random()*230);
+      ip2 = Math.ceil(Math.random()*210);
+      ip3 = Math.ceil(Math.random()*210);
+      ip4 = Math.ceil(Math.random()*127);
+      ip = ip1+'.'+ip2+'.'+ip3+'.'+ip4;
+      rx = Math.ceil(Math.random()*10);
+      rx = rx <= 5? 0: 1;
+  
+      $('#cmd')_$html = 'server IP: '+ip+'<br>'+
+      'connecting to server...<br>';
+      connect();
+      if (rx==1) {
+        setTimeout(function() {
+          $('#cmd')_$html = 'server IP: '+ip+'<br>'+
+          'connecting to server...<br>'+
+          '<e>successfully connected...</e><br>'+
+          'stealing data...<br><e>data stolen</e>';
+        }, 5500);
+      }
+      if (rx==0) {
+        setTimeout(function() {
+          $('#cmd')_$html = 'server IP: '+ip+'<br>'+
+          'connecting to server...<br>'+
+          '<i>connection failed...</i>';
+        }, 5500);
+      }
+    }
+    ;; If Command Is Engage
+    elif (a == 'engage' || a == 'a*mat') {
+      matrix();
+    }
+    ;; If Command Is Show_Date
+    elif (a == 'show_date' || a == 'a*date') {
+      setInterval(time, 1);
+    }
+    ;; If Command Is Recursion
+    elif (a == 'recursion' || a == 'a*loop') {
+      recursion();
+    }
+    ;; If Command Is Randomize IP
+    elif (a == 'randomize_ip' || a == 'a*ip') {
+      randomize();
+    }
+    ;; If Command Is Hack Server
+    elif (a == 'hack_sololearn' || a == 'a*hack') {
+      hack();
+    }
+    ;; If Command Is Error
+    elif (a == 'error' || a == 'a*e') {
+      error();
+    }
+    ;; If Command Is Error 403
+    elif (a == 'error_403' || a == 'a*403') {
+      error403();
+    }
+    ;; If Command Is Error 404
+    elif (a == 'error_404' || a == 'a*404') {
+      error404();
+    }
+    ;; If Command Is Special
+    elif (a == 'special' || a == 'a*gf') {
+      special();
+    }
+    ;; If Command Is Guess Game
+    elif (a == 'guess_game' || a == 'a*gg') {
+      guessgame();
+    }
+    ;; If Command Is Screen Data
+    elif (a == 'screen_data' || a == 'a*sd') {
+      screen();
+    }
+    ;; If Command Is Browser Data
+    elif (a == 'browser_data' || a == 'a*bd') {
+      props();
+    }
+    ;; If Command Is Undefined
+    else {
+      $('#cmd')_$html = '<i>error detected...</i><br>'+
+      '<i>"'+a+'"</i> is an invalid command.<br><br>'+
+      'enter <e>"help"</e> to see all command.<br>'+
+      'press any key to continue...';
+    }
+  }
+}
+
+;; Connection Progress Bar
+func=>connect() {
+  ;; Creating Progress Bar
+  progConTag = document.createElement('div');
+  progBarTag = document.createElement('div');
+  progConAttr = progConTag.setAttribute('id', 'progCon');
+  progBarAttr = progBarTag.setAttribute('id', 'progBar');
+  $('#cmd').appendChild(progConTag);
+  $('#progCon').appendChild(progBarTag);
+  
+  ;; Setting Progress Bar Holder
+  con = $('#progCon');
+  con_$width = 'calc(100% - 2px)';
+  con_$height = '20px';
+  con_$background = 'transparent';
+  con_$border = '1px solid #0e0';
+  
+  ;; Setting Progress Bar
+  bar = $('#progBar');
+  bar_$width = '100%';
+  bar_$height = '20px';
+  bar_$background = '#0e0';
+  bar_$webkitAnimation = 'loader 5s linear 1';
+  bar_$animation = 'loader 5s linear 1';
+}
+
+
+
+
+
+      
+  </script>
+</html>
+
